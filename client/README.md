@@ -1,31 +1,33 @@
-## Available Scripts
+## Scripts Disponibles
 
-For the client app: in the project directory, you can run:
+Pour l'application cliente : dans le répertoire du projet, vous pouvez exécuter :
 
 ### `npm install`
-To install dependencies
+Pour installer les dépendances
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Lance l'application en mode développement.<br>
+Ouvrez [http://localhost:3000](http://localhost:3000) pour la voir dans le navigateur.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+La page se rechargera si vous faites des modifications.<br>
+Vous verrez également toutes les erreurs de lint dans la console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lance le runner de tests en mode interactif de surveillance.<br>
+Voir la section sur [l'exécution des tests](https://facebook.github.io/create-react-app/docs/running-tests) pour plus d'informations.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Construit l'application pour la production dans le dossier `build`.<br>
+Il empaquette correctement React en mode production et optimise la construction pour obtenir les meilleures performances.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+La construction est minifiée et les noms de fichiers incluent les hachages.<br>
+Votre application est prête à être déployée !
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Voir la section sur le [déploiement](https://facebook.github.io/create-react-app/docs/deployment) pour plus d'informations.
 
 ### `npm run eject`
+
+

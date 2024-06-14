@@ -6,7 +6,7 @@ const isValidId = (id) => /^[0-9a-zA-Z]+$/.test(id.trim());
 const isValidString = (id) => /^[a-zA-Z]+$/.test(id.trim());
 
 const r1 = readline.createInterface({
-  input: procces.stdin,
+  input: process.stdin,
   output: process.stdout
 });
 
@@ -26,13 +26,20 @@ const Terminal = (command) =>
   const addToDockerGroup = async () => {
     try {
       const username = await Terminal('whoami');
+      const userGroups = await Terminal(`groups ${username.trim()}`);
+      if (userGroups.includes('docker')) {
+        console.log('L\'utilisateur ${username.trim()} est déjà dans le groupe docker.');
+        return;
+      } else {
       await Terminal(`sudo usermod -aG docker ${username.trim()}`);
       console.log(`L'utilisateur ${username.trim()} a été ajouté au groupe docker.`);
-      console.log('Vous devez vous déconnecter et vous reconnecter pour que les modifications prennent effet.');
+      console.log('Si vous rencontrez un erreur de permision , vous devez vous déconnecter et vous reconnecter pour que les modifications prennent effet.');
+      }
     } catch (error) {
       console.error('Une erreur s\'est produite lors de l\'ajout de l\'utilisateur au groupe docker :', error);
     }
   };
+
   addToDockerGroup();
 
 
@@ -57,6 +64,33 @@ const Terminal = (command) =>
       });
     }
   };
+
+
+// Fonction pour recuperer les logs d'un conteneur
+const getDockerLogs = async (id) => {
+  if (!/^[0-9a-zA-Z]+$/.test(id.trim())) {
+    throw new Error("L'ID du conteneur est invalide");
+  }
+    return await Terminal(`docker container logs ${id} --tail 1500`);
+  }
+  
+//Chargeaons le model tensoeFlox=w
+const loadModel = async () => {
+  try {
+  return await tf.loadLayersModel('file://model.json');
+  console.log('Le modèle a été chargé avec succès');
+  return model;
+  } catch (error) {
+    console.error('Une erreur s\'est produite lors du chargement du modèle :', error);
+  }
+};
+
+const analyseImage = async (model , imagePath) => {
+  const imageBuffer = fs.readFileSync(imagePath);
+  const imageTensor = tf.node.decodeImage(imageBuffer); 
+  const predictions = model.predict(imageTensor.expandDims(0));
+  return predictions.arraySync();
+}
 
 exports.safeTerminal = {
 
@@ -128,18 +162,12 @@ exports.safeTerminal = {
   },
 };
 
+
+
 // Vérifier si Docker est installé au démarrage du script
 checkDocker().then(() => {
-  rl.close();
+  r1.close();
 }).catch((error) => {
   console.error('Une erreur s\'est produite :', error);
-  rl.close();
+  r1.close();
 });
-
-// Fonction pour recuperer les logs d'un conteneur
-const getDockerLogs = async (id) => {
-if (!/^[0-9a-zA-Z]+$/.test(id.trim())) {
-  throw new Error("L'ID du conteneur est invalide");
-}
-  return await Terminal(`docker container logs ${id} --tail 1500`);
-}

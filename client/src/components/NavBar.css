@@ -1,0 +1,26 @@
+/* NavBar.css */
+.navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f9f9fc;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+  
+  .nav-button {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+  
+  .nav-button .icon {
+    margin-right: 10px;
+  }
+  

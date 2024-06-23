@@ -1,5 +1,6 @@
 .loading-screen {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -21,21 +22,11 @@
   .content {
     text-align: center;
     color: white;
+    z-index: 1;
   }
   
   h1 {
     font-size: 48px;
-    margin-bottom: 10px;
-  }
-  
-  p {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .github-logo {
-    width: 50px;
-    height: 50px;
     margin-bottom: 20px;
   }
   
@@ -51,5 +42,24 @@
   
   .start-button:hover {
     background-color: #0056b3;
+  }
+  
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: white;
+    z-index: 1;
+  }
+  
+  .footer p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  .github-logo {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
   }
   

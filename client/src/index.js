@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React , { useState,useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
@@ -10,43 +10,50 @@ import Loading from './components/loading'
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isInactive, setIsInactive] = useState(false);
+
+  useEffect(() => {
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+    if (isFirstVisit === 'false') {
+      setIsLoading(false);
+    }
+  }, []);
 
   const handleStart = () => {
+    localStorage.setItem('isFirstVisit', 'false');
+    localStorage.setItem('lastActivity', Date.now());
     setIsLoading(false);
-    localStorage.setItem('appLaunched', 'true');
   };
 
-  const resetInactivityTimer = useCallback(() => {
-    setIsInactive(false);
-    clearTimeout(window.inactivityTimer);
-    window.inactivityTimer = setTimeout(() => {
-      setIsInactive(true);
-    }, 3600000); // 1 heure en millisecondes
+  useEffect(() => {
+    const handleActivity = () => {
+      localStorage.setItem('lastActivity', Date.now());
+    };
+
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+    };
   }, []);
 
   useEffect(() => {
-    const firstLaunch = localStorage.getItem('appLaunched') !== 'true';
-    if (firstLaunch) {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
-
-    window.addEventListener('mousemove', resetInactivityTimer);
-    window.addEventListener('keypress', resetInactivityTimer);
-
-    resetInactivityTimer(); // Initialiser le timer au démarrage
-
-    return () => {
-      window.removeEventListener('mousemove', resetInactivityTimer);
-      window.removeEventListener('keypress', resetInactivityTimer);
-      clearTimeout(window.inactivityTimer);
+    const checkInactivity = () => {
+      const lastActivity = localStorage.getItem('lastActivity');
+      if (lastActivity && Date.now() - lastActivity > 3600000) {
+        setIsLoading(true);
+        localStorage.setItem('isFirstVisit', 'true');
+      }
     };
-  }, [resetInactivityTimer]);
+
+    const interval = setInterval(checkInactivity, 60000); // Vérifiez toutes les minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    (isLoading || isInactive) ? <Loading onStart={handleStart} /> :
+    isLoading ? <Loading onStart={handleStart} /> :
     <Provider store={store}>
       <Routes />
     </Provider>

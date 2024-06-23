@@ -13,46 +13,49 @@ Une interface graphique simple pour gerer les conteneurs docker ![Docker: pulls 
 - Exécuter ou supprimer une image.
 - Pas besoin d'utiliser le terminal pour les tâches courantes.
 
-## Start the app
+## Démarrer l'application
 
-Before you follow below steps to start the app, make sure you have `node` and `npm` installed in your system.
+Avant de suivre les étapes ci-dessous pour démarrer l'application, assurez-vous d'avoir `node` et `npm` installés sur votre système.
 
-- Clone the repository
+- Cloner le dépôt
+- 
   ```
   git clone git@github.com:rsony-level/dockerManager.git
   ```
-- Change directory
+- Changer de répertoire
   ```
   cd ./dockerManager
 
   ```
-- Run `app.js`, it will automatically install all the [node modules](https://github.com/rakibtg/docker-web-gui/blob/master/backend/package.json) for you if not installed already.
+  - Exécuter `app.js`, cela installera automatiquement tous les [modules node](https://github.com/sony-level/dockerManager/blob/master/backend/package.json) pour vous s'ils ne sont pas déjà installés.
+
   ```
   node app.js
   ```
-- Now visit http://localhost:3230/
+- Maintenant, visitez http://localhost:3230/
 
-## Using Docker
+## Utiliser Docker
 
-You can run this application through a docker container, but it only works in **MacOS**. You can use that with/without [**`docker compose`**](https://docs.docker.com/compose/).
-Also, the application will be exposed at port http://localhost:3230.
+Vous pouvez exécuter cette application via un conteneur Docker, mais cela fonctionne uniquement sous **MacOS**. Vous pouvez l'utiliser avec ou sans [**`docker compose`**](https://docs.docker.com/compose/).
+De plus, l'application sera exposée sur le port http://localhost:3230.
 
-### Without Docker Compose
+### Sans Docker Compose
 
-If you don't have a docker compose, then you can use the following commands:
+Si vous n'avez pas de docker compose, alors vous pouvez utiliser les commandes suivantes :
 
-- To build the image:
+- Pour construire l'image :
+
   ```
   docker build . -t docker-Manager
   ```
-- To run the image:
+- Pour exécuter l'image :
   ```
   docker run -p 3230:3230 -v /usr/local/bin/docker:/usr/local/bin/docker -v /var/run/docker.sock:/var/run/docker.sock docke-Manager
   ```
 
-### With Docker Compose
 
-If you already docker compose installed, then simply do this:
+### Avec Docker Compose
+Si vous avez déjà installé Docker Compose, il vous suffit de faire ceci :
 
 ```
 docker-compose build

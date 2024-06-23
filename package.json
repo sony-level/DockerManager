@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.20.0",
+    "backend": "^0.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "sqlite3": "^5.1.7"
   }
 }

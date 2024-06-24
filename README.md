@@ -20,7 +20,7 @@ Avant de suivre les étapes ci-dessous pour démarrer l'application, assurez-vou
 - Cloner le dépôt
 - 
   ```
-  git clone git@github.com:rsony-level/dockerManager.git
+  git clone git@github.com:sony-level/dockerManager.git
   ```
 - Changer de répertoire
   ```

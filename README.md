@@ -36,7 +36,7 @@ Avant de suivre les étapes ci-dessous pour démarrer l'application, assurez-vou
 
 ## Utiliser Docker
 
-Vous pouvez exécuter cette application via un conteneur Docker, mais cela fonctionne uniquement sous **MacOS**. Vous pouvez l'utiliser avec ou sans [**`docker compose`**](https://docs.docker.com/compose/).
+Vous pouvez exécuter cette application via un conteneur Docker, mais cela fonctionne uniquement sous **MacOS**. Vous pouvez l'utiliser avec ou sans [**`docker compose`**](https://docs.docker.com/compose/). 
 De plus, l'application sera exposée sur le port http://localhost:3230.
 
 ### Sans Docker Compose

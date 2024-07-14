@@ -1,5 +1,5 @@
 # Docker Manager Dashboard
- 
+  
 [![GitHub Stars](https://img.shields.io/github/stars/sony-level/dockerManager.svg)](https://github.com/sony-level/dockerManager/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/sony-level/dockerManager.svg)](https://github.com/sony-level/dockerManager/issues) [![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)](https://github.com/sony-level/DockerManager) 
 
 Une interface graphique simple pour gerer les conteneurs docker ![Docker: pulls (library)](http://flat.badgen.net/docker/pulls/library/library?params)
